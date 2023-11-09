@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "../styles/Add.css"
 
 export const Adicionar = () => {
     const [autor, setAutor] = useState({
@@ -40,49 +41,53 @@ export const Adicionar = () => {
         }
     };
     return (
-        <div>
-            <Link to="/">Voltar</Link>
-            <h1>Cadastro do autor</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Nome:</label>
-                    <input
-                        type="text"
-                        name="nome"
-                        value={autor.nome}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label>Sobrenome:</label>
-                    <input
-                        type="text"
-                        name="sobrenome"
-                        value={autor.sobrenome}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label>Telefone:</label>
-                    <input
-                        type="text"
-                        name="telefone"
-                        value={autor.telefone}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={autor.email}
-                        onChange={handleChange}
-                    />
-                </div>
-                <button>Enviar</button>
-            </form>
+        <div className="formulario-container">
+          <Link to="/">Voltar</Link>
+          <h1>Cadastro do autor</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Nome:</label>
+              <input
+                type="text"
+                name="nome"
+                value={autor.nome}
+                onChange={handleChange}
+                id="input"
+              />
+            </div>
+            <div className="form-group">
+              <label>Sobrenome:</label>
+              <input
+                type="text"
+                name="sobrenome"
+                value={autor.sobrenome}
+                onChange={handleChange}
+                id="input"
+              />
+            </div>
+            <div className="form-group">
+              <label>Telefone:</label>
+              <input
+                type="text"
+                name="telefone"
+                value={autor.telefone}
+                onChange={handleChange}
+                id="input"
+              />
+            </div>
+            <div className="form-group">
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={autor.email}
+                onChange={handleChange}
+                id="input"
+              />
+            </div>
+            <button className="submit-button">Enviar</button>
+          </form>
         </div>
-    )
-}
+      );
+    };
 

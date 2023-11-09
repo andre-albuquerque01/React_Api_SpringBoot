@@ -3,7 +3,7 @@ import trash from "../img/trash.png";
 import editar from "../img/editar.png";
 import { DeleteAll } from "./DeleteAll";
 import { Link } from "react-router-dom"
-import { Search } from "./Search";
+import "../styles/Get.css"
 
 export const GetAutor = () => {
     const [autores, setAutores] = useState([]);
@@ -50,7 +50,6 @@ export const GetAutor = () => {
     const handleId = (id: String) => {
         setId(id);
     }
-console.log(search);
 
     const handleSearch = () => {
         if (search !== '' && search !== undefined) {
@@ -74,8 +73,8 @@ console.log(search);
     }, [valueId]);
 
     return (
-        <div>
-            <div className="">
+        <div className="tabela-container">
+            <div className="botoes-topo">
                 {autores.length > 0 ? (<DeleteAll />) : ''}
                 <Link to='/adicionar'>Adicionar</Link>
                 <div>
@@ -85,26 +84,46 @@ console.log(search);
                 </div>
                 <br />
             </div>
-            <table>
-                <tr>
-                    <th>Nome</th>
-                    <th>Sobrenome</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>#</th>
-                    <th>#</th>
-                </tr>
-
-                {autores.length > 0 ? autores.map(({ id, nome, sobrenome, email, telefone }) => (
-                    <tr key={id}>
-                        <td>{nome}</td>
-                        <td>{sobrenome}</td>
-                        <td>{email}</td>
-                        <td>{telefone}</td>
-                        <td><img src={trash} alt="" width={15} onClick={() => handleId(id)} /></td>
-                        <td><Link to={`update/${id}`}><img src={editar} alt="" width={15} /></Link></td>
+            <table className="tabela-autores">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>#</th>
+                        <th>#</th>
                     </tr>
-                )) : <td colSpan={6}>Nenhum resultado encontrado</td>}
+                </thead>
+                <tbody>
+                    {autores.length > 0 ? (
+                        autores.map(({ id, nome, sobrenome, email, telefone }) => (
+                            <tr key={id}>
+                                <td>{nome}</td>
+                                <td>{sobrenome}</td>
+                                <td>{email}</td>
+                                <td>{telefone}</td>
+                                <td>
+                                    <img
+                                        src={trash}
+                                        alt=""
+                                        width={15}
+                                        onClick={() => handleId(id)}
+                                    />
+                                </td>
+                                <td>
+                                    <Link to={`update/${id}`}>
+                                        <img src={editar} alt="" width={15} />
+                                    </Link>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan={6}>Nenhum resultado encontrado</td>
+                        </tr>
+                    )}
+                </tbody>
             </table>
         </div>
     );

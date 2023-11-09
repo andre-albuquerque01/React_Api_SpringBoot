@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import "../styles/Add.css"
 
 export const Update = () => {
     const [autor, setAutor] = useState({});
     const { id } = useParams();
-    
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -15,10 +16,10 @@ export const Update = () => {
                 console.log("Apresenta erro", err);
             }
         };
-        
+
         fetchData();
     }, []);
-    
+
     const handleChange = (e: any) => {
         const { name, value } = e.target;
         setAutor((prevAutor) => ({
@@ -51,48 +52,52 @@ export const Update = () => {
     };
 
     return (
-        <div>
+        <div className="formulario-container">
             <Link to="/">Voltar</Link>
             <h1>Editar autor</h1>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="form-group">
                     <label>Nome:</label>
                     <input
                         type="text"
                         name="nome"
                         value={autor.nome}
                         onChange={handleChange}
+                        id="input"
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label>Sobrenome:</label>
                     <input
                         type="text"
                         name="sobrenome"
                         value={autor.sobrenome}
                         onChange={handleChange}
+                        id="input"
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label>Telefone:</label>
                     <input
                         type="text"
                         name="telefone"
                         value={autor.telefone}
                         onChange={handleChange}
+                        id="input"
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label>Email:</label>
                     <input
                         type="email"
                         name="email"
                         value={autor.email}
                         onChange={handleChange}
+                        id="input"
                     />
                 </div>
-                <button>Enviar</button>
+                <button className="submit-button">Enviar</button>
             </form>
         </div>
-    )
-}
+    );
+};
